@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminController\CategoryController;
+use App\Http\Controllers\AdminController\BrandController;
+use App\Http\Controllers\AdminController\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,11 @@ use App\Http\Controllers\CategoryController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/categories', [CategoryController::class, 'index']);
-Route::post('/categories/post', [CategoryController::class, 'store']);
+Route::resource('/admin/categories', CategoryController::class);
+Route::resource('/admin/brands', BrandController::class);
+Route::resource('/admin/products', ProductController::class);
+/*Route::get('/categories', [CategoryController::class, 'index']);
+Route::post('/categories/post', [CategoryController::class, 'store']);*/
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

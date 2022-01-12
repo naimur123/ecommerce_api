@@ -24,9 +24,9 @@ class CreateProductsTable extends Migration
             $table->text('short_description');
             $table->text('long_description');
             $table->float('price');
-            $table->string('image_one');
-            $table->string('image_two');
-            $table->string('image_three');
+            $table->binary('image_one');
+            $table->binary('image_two');
+            $table->binary('image_three');
             $table->integer('Createby');
             $table->dateTime('Createdate');
             $table->integer('Modifiedby');
