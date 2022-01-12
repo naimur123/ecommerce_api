@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Generic_status extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'name', 'short_name', 'Createby', 'Createdate', 'Modifiedby', 'Modifieddate',
+
+    ];
+    public $timestamps = false;
 }

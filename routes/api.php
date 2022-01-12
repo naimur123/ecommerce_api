@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController\CategoryController;
 use App\Http\Controllers\AdminController\BrandController;
 use App\Http\Controllers\AdminController\ProductController;
+use App\Http\Controllers\AdminController\GenericStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ use App\Http\Controllers\AdminController\ProductController;
 Route::resource('/admin/categories', CategoryController::class);
 Route::resource('/admin/brands', BrandController::class);
 Route::resource('/admin/products', ProductController::class);
+Route::resource('/admin/generic_status', GenericStatusController::class);
 /*Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('/categories/post', [CategoryController::class, 'store']);*/
 
