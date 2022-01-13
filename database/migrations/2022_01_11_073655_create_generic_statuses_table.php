@@ -14,13 +14,14 @@ class CreateGenericStatusesTable extends Migration
     public function up()
     {
         Schema::create('generic_statuses', function (Blueprint $table) {
-            $table->id();
+            $table->id('status_id');
             $table->string('name');
             $table->string('short_name');
             $table->integer('Createby');
             $table->dateTime('Createdate');
             $table->integer('Modifiedby');
             $table->dateTime('Modifieddate');
+
         });
     }
 

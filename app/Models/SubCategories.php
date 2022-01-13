@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categories extends Model
+class SubCategories extends Model
 {
-
-
     protected $fillable = [
-        'category_name','category_details','remarks', 'Createby','status_id', 'Createdate', 'Modifiedby', 'Modifieddate',
+        'subcategory_name','subcategory_details','remarks','category_id','status_id','Createby', 'Createdate', 'Modifiedby', 'Modifieddate',
 
     ];
     public $timestamps = false;

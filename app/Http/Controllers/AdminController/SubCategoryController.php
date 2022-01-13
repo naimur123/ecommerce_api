@@ -4,35 +4,36 @@ namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Categories;
+use App\Models\SubCategories;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
     public function index(){
-        return Categories::all();
+        return SubCategories::all();
 
     }
     public function store(Request $request){
         $request->validate([
-            'category_name' => 'required',
-            'category_details' => 'required',
+            'subcategory_name' => 'required',
+            'subcategory_details' => 'required',
             'remarks' => 'required',
+            'category_id' => 'required',
             'status_id' => 'required'
 
         ]);
 
 
-        return Categories::create($request->all());
+        return SubCategories::create($request->all());
     }
     public function update(Request $request, $id){
 
-        $category = Categories::find($id);
+        $category = SubCategories::find($id);
         $category->update($request->all());
         return $category;
 
 
     }
     public function destroy($id){
-        return Categories::destroy($id);
+        return SubCategories::destroy($id);
     }
 }

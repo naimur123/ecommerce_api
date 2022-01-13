@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateCurrenciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,17 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id('category_id');
-            $table->string('category_name');
-            $table->text('category_details');
+        Schema::create('currencies', function (Blueprint $table) {
+            $table->id('currency_id');
+            $table->string('name');
+            $table->string('short_name');
             $table->text('remarks');
-            $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('status_id')->on('generic_statuses');
+            $table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('country_id')->on('countries');
             $table->integer('Createby');
             $table->dateTime('Createdate');
             $table->integer('Modifiedby');
             $table->dateTime('Modifieddate');
-
-
         });
     }
 
@@ -36,6 +34,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('currencies');
     }
 }
