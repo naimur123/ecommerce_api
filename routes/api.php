@@ -7,6 +7,9 @@ use App\Http\Controllers\AdminController\SubCategoryController;
 use App\Http\Controllers\AdminController\BrandController;
 use App\Http\Controllers\AdminController\ProductController;
 use App\Http\Controllers\AdminController\GenericStatusController;
+use App\Http\Controllers\AdminController\UnitController;
+use App\Http\Controllers\AdminController\CountryController;
+use App\Http\Controllers\AdminController\CurrencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +23,15 @@ use App\Http\Controllers\AdminController\GenericStatusController;
 */
 
 // Admin part ///
+Route::resource('/admin/generic_status', GenericStatusController::class);
 Route::resource('/admin/categories', CategoryController::class);
 Route::resource('/admin/subcategories', SubCategoryController::class);
+Route::resource('/admin/countries', CountryController::class);
 Route::resource('/admin/brands', BrandController::class);
+Route::resource('/admin/currencies', CurrencyController::class);
+Route::resource('/admin/units', UnitController::class);
 Route::resource('/admin/products', ProductController::class);
-Route::resource('/admin/generic_status', GenericStatusController::class);
+
 
 
 /*Route::get('/categories', [CategoryController::class, 'index']);

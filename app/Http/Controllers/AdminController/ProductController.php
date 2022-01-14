@@ -20,7 +20,11 @@ class ProductController extends Controller
             'product_quantity' => 'required',
             'short_description' => 'required',
             'price' => 'required',
+            'discount_price' => 'required',
+            'discount_percentage' => 'required',
             'image_one' => 'required',
+            'image_two' => 'required',
+            'image_three' => 'required',
 
         ]);
 
@@ -29,13 +33,18 @@ class ProductController extends Controller
     }
     public function update(Request $request, $id){
 
-        $category = Products::find($id);
-        $category->update($request->all());
-        return $category;
+        $product = Products::where('id',$id)->update($request->all());
+
+        //$product = Products::find($id);
+        //$product->update($request->all());
+        return $product;
 
 
     }
     public function destroy($id){
-        return Products::destroy($id);
+
+        $products = Products::where('id',$id)->delete();
+        return $products;
+        //return Products::destroy($id);
     }
 }

@@ -15,6 +15,10 @@ class BrandController extends Controller
     public function store(Request $request){
         $request->validate([
             'brand_name' => 'required',
+            'brand_image' => 'required',
+            'remarks' => 'required',
+            'country_id' => 'required',
+            'status_id' => 'required'
 
         ]);
 
@@ -23,13 +27,16 @@ class BrandController extends Controller
     }
     public function update(Request $request, $id){
 
-        $category = Brands::find($id);
-        $category->update($request->all());
-        return $category;
+        //$brands = Brands::find($id);
+        $brands = Brands::where('brand_id',$id)->update($request->all());
+        //$brands->update($request->all());
+        return $brands;
 
 
     }
     public function destroy($id){
-        return Brands::destroy($id);
+        $brands = Brands::where('brand_id',$id)->delete();
+        //$brands->delete();
+        return $brands;
     }
 }

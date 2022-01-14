@@ -27,13 +27,18 @@ class SubCategoryController extends Controller
     }
     public function update(Request $request, $id){
 
-        $category = SubCategories::find($id);
-        $category->update($request->all());
-        return $category;
+        //$category = SubCategories::find($id);
+        $subcategory = SubCategories::where('subcat_id',$id)->update($request->all());
+        //$category->update($request->all());
+        return $subcategory;
 
 
     }
     public function destroy($id){
-        return SubCategories::destroy($id);
+
+        $subcategory = SubCategories::where('subcat_id',$id)->delete();
+        return $subcategory;
+
+       // return SubCategories::destroy($id);
     }
 }

@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Currency extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'name','short_name','remarks','country_id','Createby', 'Createdate', 'Modifiedby', 'Modifieddate',
+
+    ];
+    public $timestamps = false;
 }
