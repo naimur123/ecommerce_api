@@ -119,7 +119,7 @@ class AuthController extends Controller
     {
         return Auth::guard();
 
-    }//end guard()
+    }
 
 
-}//end class
+}
