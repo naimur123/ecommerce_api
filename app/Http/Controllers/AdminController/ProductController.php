@@ -33,18 +33,18 @@ class ProductController extends Controller
     }
     public function update(Request $request, $id){
 
-        $product = Products::where('id',$id)->update($request->all());
+        //$product = Products::where('id',$id)->update($request->all());
 
-        //$product = Products::find($id);
-        //$product->update($request->all());
+        $product = Products::find($id);
+        $product->save($request->all());
         return $product;
 
 
     }
     public function destroy($id){
 
-        $products = Products::where('id',$id)->delete();
-        return $products;
-        //return Products::destroy($id);
+        //$products = Products::where('id',$id)->delete();
+       // return $products;
+        return Products::destroy($id);
     }
 }

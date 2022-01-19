@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController\GenericStatusController;
 use App\Http\Controllers\AdminController\UnitController;
 use App\Http\Controllers\AdminController\CountryController;
 use App\Http\Controllers\AdminController\CurrencyController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,21 @@ Route::resource('/admin/currencies', CurrencyController::class);
 Route::resource('/admin/units', UnitController::class);
 Route::resource('/admin/products', ProductController::class);
 
+//UserPart
+Route::group(
+    [
+        'middleware' => 'api',
+        'namespace'  => 'App\Http\Controllers',
+        'prefix'     => 'auth',
+    ],
+    function ($router) {
+        Route::post('login', 'AuthController@login');
+        Route::post('register', 'AuthController@register');
+        Route::post('logout', 'AuthController@logout');
+        Route::get('profile', 'AuthController@profile');
+        Route::post('refresh', 'AuthController@refresh');
+    }
+);
 
 
 /*Route::get('/categories', [CategoryController::class, 'index']);
