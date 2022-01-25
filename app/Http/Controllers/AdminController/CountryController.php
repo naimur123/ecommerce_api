@@ -28,7 +28,7 @@ class CountryController extends Controller
 
         $country = Country::where('country_id',$id)->update($request->all());
 
-       //$category = Country::find($id);
+        //$category = Country::find($id);
         //$category->update($request->all());
         return $country;
 

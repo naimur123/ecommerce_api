@@ -13,3 +13,4 @@ class SubCategories extends Model
     ];
     public $timestamps = false;
 }
+
