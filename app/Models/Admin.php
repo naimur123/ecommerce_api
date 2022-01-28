@@ -9,9 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+class Admin extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    protected $guard = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +23,19 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'address',
+
         'password',
+        'image',
+        'bio',
+        'is_developer',
+        'remember_token',
+        'created_by',
+        'CrateDate',
+        'updated_by',
+        'Modifieddate',
+
     ];
 
     /**
@@ -42,6 +56,10 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function groups(){
+        return $this->belongsTo(Groups::class, 'group_id');
+    }
+
     public function getJWTIdentifier(){
         return $this->getKey();
     }

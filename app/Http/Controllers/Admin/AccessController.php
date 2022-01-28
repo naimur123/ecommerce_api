@@ -1,42 +1,40 @@
 <?php
 
-namespace App\Http\Controllers\AdminController;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Groups;
 use Illuminate\Http\Request;
-use App\Models\Country;
 
-class CountryController extends Controller
+class AccessController extends Controller
 {
     public function index(){
-        return Country::all();
+        return Groups::all();
 
     }
     public function store(Request $request){
         $request->validate([
             'name' => 'required',
-            'short_name' => 'required',
-            'remarks' => 'required',
-            'status_id' => 'required'
+            'is_admin' => 'required'
 
         ]);
 
 
-        return Country::create($request->all());
+        return Groups::create($request->all());
     }
     public function update(Request $request, $id){
 
-        $country = Country::where('country_id',$id)->update($request->all());
+        //$country = Groups::where('id',$id)->update($request->all());
 
         //$category = Country::find($id);
         //$category->update($request->all());
-        return $country;
+        //return $country;
 
 
     }
     public function destroy($id){
 
-        $country = Country::where('country_id',$id)->delete();
+        $country = Groups::where('id',$id)->delete();
         return $country;
         //return Country::destroy($id);
     }

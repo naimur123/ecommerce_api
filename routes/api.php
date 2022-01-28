@@ -2,15 +2,17 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController\CategoryController;
-use App\Http\Controllers\AdminController\SubCategoryController;
-use App\Http\Controllers\AdminController\BrandController;
-use App\Http\Controllers\AdminController\ProductController;
-use App\Http\Controllers\AdminController\GenericStatusController;
-use App\Http\Controllers\AdminController\UnitController;
-use App\Http\Controllers\AdminController\CountryController;
-use App\Http\Controllers\AdminController\CurrencyController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\GenericStatusController;
+use App\Http\Controllers\Admin\AccessController;
+use App\Http\Controllers\Admin\UnitController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\CurrencyController;
+use App\Http\Middleware\AdminGuard;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,22 @@ use App\Http\Controllers\AuthController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Admin
+Route::group(
+    [
+        'middleware' => 'api',
+        'namespace'  => 'App\Http\Controllers\Admin',
+        'prefix'     => 'admin',
+    ],
+    function ($router) {
+        Route::post('login', 'AdminController@login');
+        Route::post('register', 'AdminController@register');
+        Route::post('logout', 'AdminController@logout');
+        Route::get('profile', 'AdminController@profile');
+        Route::post('refresh', 'AdminController@refresh');
+    }
+);
+
 
 // Admin part ///
 Route::resource('/admin/generic_status', GenericStatusController::class);
@@ -32,6 +50,7 @@ Route::resource('/admin/brands', BrandController::class);
 Route::resource('/admin/currencies', CurrencyController::class);
 Route::resource('/admin/units', UnitController::class);
 Route::resource('/admin/products', ProductController::class);
+Route::resource('/admin/groups', AccessController::class);
 
 //UserPart
 Route::group(
@@ -41,11 +60,11 @@ Route::group(
         'prefix'     => 'auth',
     ],
     function ($router) {
-        Route::post('login', 'AuthController@login');
-        Route::post('register', 'AuthController@register');
-        Route::post('logout', 'AuthController@logout');
-        Route::get('profile', 'AuthController@profile');
-        Route::post('refresh', 'AuthController@refresh');
+        Route::post('login', 'UserController@login');
+        Route::post('register', 'UserController@register');
+        Route::post('logout', 'UserController@logout');
+        Route::get('profile', 'UserController@profile');
+        Route::post('refresh', 'UserController@refresh');
     }
 );
 

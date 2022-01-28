@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\Groups;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-
-class AuthController extends Controller
+class AdminController extends Controller
 {
-
-
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware( 'auth:admin-api', [ 'except' => [ 'login','register' ] ] );
+        // $this->admin = new Admin;
 
     }
 
@@ -52,7 +52,8 @@ class AuthController extends Controller
             $request->all(),
             [
                 'name'     => 'required|string|between:2,100',
-                'email'    => 'required|email|unique:users',
+                'email'    => 'required|email|unique:admins',
+                'phone'    => 'required',
                 'password' => 'required|confirmed|min:6',
             ]
         );
@@ -63,15 +64,16 @@ class AuthController extends Controller
                 422
             );
         }
-
-        $user = User::create(
+        $groups = Groups::all()->get('id');
+        $admin = Admin::create(
             array_merge(
                 $validator->validated(),
+                ['group_id' => $groups],
                 ['password' => bcrypt($request->password)]
             )
         );
 
-        return response()->json(['message' => 'User created successfully', 'user' => $user]);
+        return response()->json(['message' => 'Admin created successfully', 'admin' => $admin]);
 
     }
 
@@ -88,7 +90,7 @@ class AuthController extends Controller
     //profile
     public function profile()
     {
-        return response()->json($this->guard()->user());
+        return response()->json($this->guard()->admin());
 
     }
 
@@ -120,6 +122,4 @@ class AuthController extends Controller
         return Auth::guard();
 
     }
-
-
 }
