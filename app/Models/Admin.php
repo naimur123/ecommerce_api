@@ -13,8 +13,6 @@ class Admin extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $guard = 'admin';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +23,7 @@ class Admin extends Authenticatable implements JWTSubject
         'email',
         'phone',
         'address',
-
+        'group_id',
         'password',
         'image',
         'bio',

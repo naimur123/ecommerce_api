@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Groups;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware( 'auth:admin-api', [ 'except' => [ 'login','register' ] ] );
+        $this->middleware('auth:admin', [ 'except' => [ 'login','register' ] ] );
         // $this->admin = new Admin;
 
     }
@@ -64,7 +64,7 @@ class AdminController extends Controller
                 422
             );
         }
-        $groups = Groups::all()->get('id');
+        $groups = Groups::where("id", 1)->get('id');
         $admin = Admin::create(
             array_merge(
                 $validator->validated(),
@@ -90,7 +90,7 @@ class AdminController extends Controller
     //profile
     public function profile()
     {
-        return response()->json($this->guard()->admin());
+        return response()->json($this->guard()->user());
 
     }
 

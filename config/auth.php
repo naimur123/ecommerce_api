@@ -42,16 +42,12 @@ return [
         ],
         'api' => [
             'driver'   => 'jwt',
-            'provider' => 'users'
+            'provider' => 'users',
         ],
         'admin'    => [
-            'driver'   => 'session',
+            'driver' => 'jwt',
             'provider' => 'admins',
-        ],
 
-        'admin-api' => [
-            'driver'   => 'jwt',
-            'provider' => 'admins',
         ],
         'users' => [
             'driver' => 'jwt',

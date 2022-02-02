@@ -8,10 +8,13 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\GenericStatusController;
 use App\Http\Controllers\Admin\AccessController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\CurrencyController;
 use App\Http\Middleware\AdminGuard;
+
 
 
 /*
@@ -29,16 +32,25 @@ Route::group(
     [
         'middleware' => 'api',
         'namespace'  => 'App\Http\Controllers\Admin',
-        'prefix'     => 'admin',
+        'prefix'     => 'auth',
     ],
-    function ($router) {
-        Route::post('login', 'AdminController@login');
-        Route::post('register', 'AdminController@register');
-        Route::post('logout', 'AdminController@logout');
-        Route::get('profile', 'AdminController@profile');
-        Route::post('refresh', 'AdminController@refresh');
+    function () {
+        Route::post('/admin/login', 'AdminController@login');
+        Route::post('/admin/register', 'AdminController@register');
+        Route::post('/admin/logout', 'AdminController@logout');
+        Route::get('/admin/profile', 'AdminController@ profile');
+        Route::post('/admin/refresh', 'AdminController@refresh');
     }
 );
+// Route::namespace('')->middleware('admin')->group(function () {
+//     Route::prefix('auth')->group(function () { //you can use prefix if you want
+//         Route::post('/admin/login', 'AdminController@login');
+//         Route::post('/admin/register', 'AdminController@register');
+//         Route::post('/admin/logout', 'AdminController@logout');
+//         Route::get('/admin/profile', 'AdminController@ profile');
+//         Route::post('/admin/refresh', 'AdminController@refresh');
+//     });
+// });
 
 
 // Admin part ///
