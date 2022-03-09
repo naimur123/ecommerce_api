@@ -14,16 +14,16 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->id('category_id');
-            $table->string('category_name');
-            $table->text('category_details');
-            $table->text('remarks');
+            $table->id('id');
+            $table->string('name');
+            $table->text('details')->nullable();
+            $table->text('remarks')->nullable();
             $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('status_id')->on('generic_statuses');
+            $table->foreign('status_id')->references('id')->on('generic_statuses');
             $table->integer('Createby');
             $table->dateTime('Createdate');
-            $table->integer('Modifiedby');
-            $table->dateTime('Modifieddate');
+            $table->integer('Modifiedby')->nullable();
+            $table->dateTime('Modifieddate')->nullable();
 
 
         });

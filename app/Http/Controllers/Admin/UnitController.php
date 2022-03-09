@@ -15,9 +15,6 @@ class UnitController extends Controller
     public function store(Request $request){
         $request->validate([
             'name' => 'required',
-            'short_name' => 'required',
-            'remarks' => 'required',
-
 
         ]);
 
@@ -25,7 +22,7 @@ class UnitController extends Controller
     }
     public function update(Request $request, $id){
 
-        $unit = Unit::where('unit_id',$id)->update($request->all());
+        $unit = Unit::where('id',$id)->update($request->all());
 
         //$category = Unit::find($id);
         //$category->update($request->all());
@@ -35,8 +32,8 @@ class UnitController extends Controller
     }
     public function destroy($id){
 
-        $unit = Unit::where('unit_id',$id)->delete();
-        return $unit;
-        //return Unit::destroy($id);
+        // $unit = Unit::where('id',$id)->delete();
+        // return $unit;
+        return Unit::destroy($id);
     }
 }

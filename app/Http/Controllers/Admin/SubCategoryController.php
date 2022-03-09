@@ -14,11 +14,7 @@ class SubCategoryController extends Controller
     }
     public function store(Request $request){
         $request->validate([
-            'subcategory_name' => 'required',
-            'subcategory_details' => 'required',
-            'remarks' => 'required',
-            'category_id' => 'required',
-            'status_id' => 'required'
+            'name' => 'required',
 
         ]);
 
@@ -28,7 +24,7 @@ class SubCategoryController extends Controller
     public function update(Request $request, $id){
 
         //$category = SubCategories::find($id);
-        $subcategory = SubCategories::where('subcat_id',$id)->update($request->all());
+        $subcategory = SubCategories::where('id',$id)->update($request->all());
         //$category->update($request->all());
         return $subcategory;
 
@@ -36,9 +32,9 @@ class SubCategoryController extends Controller
     }
     public function destroy($id){
 
-        $subcategory = SubCategories::where('subcat_id',$id)->delete();
-        return $subcategory;
+        // $subcategory = SubCategories::where('id',$id)->delete();
+        // return $subcategory;
 
-       // return SubCategories::destroy($id);
+       return SubCategories::destroy($id);
     }
 }

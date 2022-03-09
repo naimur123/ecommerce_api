@@ -15,9 +15,6 @@ class CurrencyController extends Controller
     public function store(Request $request){
         $request->validate([
             'name' => 'required',
-            'short_name' => 'required',
-            'remarks' => 'required',
-            'country_id' => 'required'
 
         ]);
 
@@ -26,7 +23,7 @@ class CurrencyController extends Controller
     }
     public function update(Request $request, $id){
 
-        $currency = Currency::where('currency_id',$id)->update($request->all());
+        $currency = Currency::where('id',$id)->update($request->all());
         //$category = Currency::find($id);
         //$category->update($request->all());
         return $currency;
@@ -35,8 +32,8 @@ class CurrencyController extends Controller
     }
     public function destroy($id){
 
-        $currency = Currency::where('currency_id',$id)->delete();
-        return $currency;
-        //return Currency::destroy($id);
+        // $currency = Currency::where('id',$id)->delete();
+        // return $currency;
+        return Currency::destroy($id);
     }
 }

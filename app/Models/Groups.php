@@ -15,4 +15,8 @@ class Groups extends Model
     protected $casts = [
         "is_admin"  => "boolean",
     ];
+    public function admin()
+    {
+        return $this->hasMany(Admin::class);
+    }
 }

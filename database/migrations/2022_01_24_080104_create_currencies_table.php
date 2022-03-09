@@ -14,16 +14,16 @@ class CreateCurrenciesTable extends Migration
     public function up()
     {
         Schema::create('currencies', function (Blueprint $table) {
-            $table->id('currency_id');
+            $table->id('id');
             $table->string('name');
             $table->string('short_name');
-            $table->text('remarks');
+            $table->text('remarks')->nullable();
             $table->unsignedBigInteger('country_id');
-            $table->foreign('country_id')->references('country_id')->on('countries');
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->integer('Createby');
             $table->dateTime('Createdate');
-            $table->integer('Modifiedby');
-            $table->dateTime('Modifieddate');
+            $table->integer('Modifiedby')->nullable();
+            $table->dateTime('Modifieddate')->nullable();
         });
     }
 

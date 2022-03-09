@@ -64,11 +64,11 @@ class AdminController extends Controller
                 422
             );
         }
-        $groups = Groups::where("id", 1)->get('id');
-        $admin = Admin::create(
+        // $groups = Groups::where("id", 1)->get('id');
+        $admin = Admin::firstOrCreate(
             array_merge(
                 $validator->validated(),
-                ['group_id' => $groups],
+                // ['group_id' => $groups],
                 ['password' => bcrypt($request->password)]
             )
         );

@@ -14,13 +14,14 @@ class BrandController extends Controller
     }
     public function store(Request $request){
         $request->validate([
-            'brand_name' => 'required',
-            'brand_image' => 'required',
-            'remarks' => 'required',
-            'country_id' => 'required',
-            'status_id' => 'required'
+            'name' => 'required',
 
         ]);
+        // $brand = New Brands();
+        // $brand->name = $request->name;
+        // $brand->image = $request->image;
+        // $brand->remarks = $request->remarks;
+        // $brand->category_id = $request->cateory_id;
 
 
         return Brands::create($request->all());
@@ -28,15 +29,15 @@ class BrandController extends Controller
     public function update(Request $request, $id){
 
         //$brands = Brands::find($id);
-        $brands = Brands::where('brand_id',$id)->update($request->all());
+        $brands = Brands::where('id',$id)->update($request->all());
         //$brands->update($request->all());
         return $brands;
 
 
     }
     public function destroy($id){
-        $brands = Brands::where('brand_id',$id)->delete();
+        // $brands = Brands::where('id',$id)->delete();
         //$brands->delete();
-        return $brands;
+        return Brands::destroy($id);
     }
 }

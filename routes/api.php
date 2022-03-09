@@ -38,16 +38,16 @@ Route::group(
         Route::post('/admin/login', 'AdminController@login');
         Route::post('/admin/register', 'AdminController@register');
         Route::post('/admin/logout', 'AdminController@logout');
-        Route::get('/admin/profile', 'AdminController@ profile');
+        Route::get('/admin/profile', 'AdminController@profile');
         Route::post('/admin/refresh', 'AdminController@refresh');
     }
 );
-// Route::namespace('')->middleware('admin')->group(function () {
-//     Route::prefix('auth')->group(function () { //you can use prefix if you want
+// Route::namespace('App\Http\Controllers\Admin')->middleware( ['api'])->group(function () {
+//     Route::prefix('auth')->group(function () {
 //         Route::post('/admin/login', 'AdminController@login');
 //         Route::post('/admin/register', 'AdminController@register');
 //         Route::post('/admin/logout', 'AdminController@logout');
-//         Route::get('/admin/profile', 'AdminController@ profile');
+//         Route::get('/admin/profile', 'AdminController@profile');
 //         Route::post('/admin/refresh', 'AdminController@refresh');
 //     });
 // });

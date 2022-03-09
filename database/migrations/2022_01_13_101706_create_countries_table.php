@@ -14,16 +14,16 @@ class CreateCountriesTable extends Migration
     public function up()
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->id('country_id');
+            $table->id('id');
             $table->string('name');
             $table->string('short_name');
             $table->text('remarks');
             $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('status_id')->on('generic_statuses');
+            $table->foreign('status_id')->references('id')->on('generic_statuses');
             $table->integer('Createby');
             $table->dateTime('Createdate');
-            $table->integer('Modifiedby');
-            $table->dateTime('Modifieddate');
+            $table->integer('Modifiedby')->nullable();
+            $table->dateTime('Modifieddate')->nullable();
         });
     }
 

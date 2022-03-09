@@ -20,33 +20,14 @@ class ProductController extends Controller
        $validator = Validator::make(
         $request->all(),
         [
-            'product_name' => 'required',
-            'product_code' => 'required',
-            'product_name' => 'required',
-            'product_quantity' => 'required',
-            'short_description' => 'required',
+            'name' => 'required',
+            'code' => 'required',
+            'quantity' => 'required',
             'price' => 'required',
-            'discount_price' => 'required',
-            'discount_percentage' => 'required',
-            'image_one' => 'required',
-            'image_two' => 'required',
-            'image_three' => 'required',
+
         ]
        );
-    //    $request->validate([
-    //         'product_name' => 'required',
-    //         'product_code' => 'required',
-    //         'product_name' => 'required',
-    //         'product_quantity' => 'required',
-    //         'short_description' => 'required',
-    //         'price' => 'required',
-    //         'discount_price' => 'required',
-    //         'discount_percentage' => 'required',
-    //         'image_one' => 'required',
-    //         'image_two' => 'required',
-    //         'image_three' => 'required',
 
-    //     ]);
         if ($validator->fails()) {
             return response()->json(
                 [$validator->errors()],
@@ -60,13 +41,13 @@ class ProductController extends Controller
     public function update(Request $request, $id){
 
         //$product = Products::where('product_id',$id)->update($request->all());
-        // $product = Products::where('product_id', $id)->firstOrFail()->update($request->all());
+         //$product = Products::where('product_id', $id)->firstOrFail()->update($request->all());
         //$product_id = Products::where('product_id', $id)->get('product_id');
         //$product->product_id = $request->product_id;
         //$product = new Products();
-        //$product = Products::where('product_id', $product_id)->first()->update($request->all());
-        $product = Products::find($id);
-        // $product_s = $product->short_description;
+        $product = Products::where('id', $id)->first()->update($request->all());
+        // $product = Products::find($id);
+        //$product_s = $product->short_description;
         // $product->category_id = $request->category_id;
         // $product->subcat_id = $request->subcat_id;
         // $product->brand_id = $request->brand_id;
@@ -86,8 +67,10 @@ class ProductController extends Controller
         // $product->Createdate = $request->Createdate;
         // $product->Modifiedby = $request->Modifiedby;
         // $product->Modifieddate = $request->Modifieddate;
+        // $product->save();
 
-        return  $product->update($request->all());
+        // return  $product->update($request->all());
+        return  $product;
 
 
 
@@ -96,8 +79,8 @@ class ProductController extends Controller
     }
     public function destroy($id){
 
-        $products = Products::where('product_id',$id)->delete();
+        // $products = Products::where('id',$id)->delete();
        // return $products;
-        return $products;
+        return Products::destroy($id);
     }
 }

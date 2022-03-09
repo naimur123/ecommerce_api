@@ -20,8 +20,8 @@ class CreateGroupsTable extends Migration
             $table->string('is_admin')->default(0);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
-            $table->dateTime('Createdate');
-            $table->dateTime('Modifieddate');
+            $table->dateTime('Createdate')->nullable();
+            $table->dateTime('Modifieddate')->nullable();
 
         });
     }

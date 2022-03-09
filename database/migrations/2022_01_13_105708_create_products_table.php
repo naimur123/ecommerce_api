@@ -14,33 +14,33 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id('product_id');
+            $table->id('id');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('category_id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('subcat_id');
-            $table->foreign('subcat_id')->references('subcat_id')->on('sub_categories');
+            $table->foreign('subcat_id')->references('id')->on('sub_categories');
             $table->unsignedBigInteger('brand_id');
-            $table->foreign('brand_id')->references('brand_id')->on('brands');
+            $table->foreign('brand_id')->references('id')->on('brands');
             $table->string('product_name');
             $table->string('product_slug');
             $table->string('product_code');
             $table->string('product_quantity');
-            $table->unsignedBigInteger('unit_id');
-            $table->foreign('unit_id')->references('unit_id')->on('units');
-            $table->text('short_description');
-            $table->text('long_description');
+            $table->unsignedBigInteger('unit_id')->nullable();
+            $table->foreign('unit_id')->references('id')->on('units');
+            $table->text('short_description')->nullable();
+            $table->text('long_description')->nullable();
             $table->float('price');
-            $table->float('discount_price');
-            $table->float('discount_percentage');
+            $table->float('discount_price')->nullable();
+            $table->float('discount_percentage')->nullable();
             $table->unsignedBigInteger('currency_id');
-            $table->foreign('currency_id')->references('currency_id')->on('currencies');
-            $table->binary('image_one');
-            $table->binary('image_two');
-            $table->binary('image_three');
+            $table->foreign('currency_id')->references('id')->on('currencies');
+            $table->binary('image_one')->nullable();
+            $table->binary('image_two')->nullable();
+            $table->binary('image_three')->nullable();
             $table->integer('Createby');
             $table->dateTime('Createdate');
-            $table->integer('Modifiedby');
-            $table->dateTime('Modifieddate');
+            $table->integer('Modifiedby')->nullable();
+            $table->dateTime('Modifieddate')->nullable();
         });
     }
 

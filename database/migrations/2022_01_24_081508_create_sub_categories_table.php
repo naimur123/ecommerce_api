@@ -14,18 +14,18 @@ class CreateSubCategoriesTable extends Migration
     public function up()
     {
         Schema::create('sub_categories', function (Blueprint $table) {
-            $table->id('subcat_id');
+            $table->id('id');
             $table->string('subcategory_name');
             $table->text('subcategory_details');
-            $table->text('remarks');
+            $table->text('remarks')->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('category_id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('status_id')->on('generic_statuses');
+            $table->foreign('status_id')->references('id')->on('generic_statuses');
             $table->integer('Createby');
             $table->dateTime('Createdate');
-            $table->integer('Modifiedby');
-            $table->dateTime('Modifieddate');
+            $table->integer('Modifiedby')->nullable();
+            $table->dateTime('Modifieddate')->nullable();
         });
     }
 

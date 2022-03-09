@@ -47,8 +47,12 @@ return [
         'admin'    => [
             'driver' => 'jwt',
             'provider' => 'admins',
-
         ],
+        // 'admins' => [
+        //     'driver' => 'jwt',
+        //     'provider' => 'admins',
+        //     'hash' => false,
+        // ],
         'users' => [
             'driver' => 'jwt',
             'provider' => 'users',
