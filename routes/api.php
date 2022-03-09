@@ -30,7 +30,7 @@ use App\Http\Middleware\AdminGuard;
 //Admin
 Route::group(
     [
-        'middleware' => 'api',
+        'middleware' => 'admin',
         'namespace'  => 'App\Http\Controllers\Admin',
         'prefix'     => 'auth',
     ],

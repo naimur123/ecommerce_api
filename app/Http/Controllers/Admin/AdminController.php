@@ -53,7 +53,6 @@ class AdminController extends Controller
             [
                 'name'     => 'required|string|between:2,100',
                 'email'    => 'required|email|unique:admins',
-                'phone'    => 'required',
                 'password' => 'required|confirmed|min:6',
             ]
         );
@@ -64,11 +63,9 @@ class AdminController extends Controller
                 422
             );
         }
-        // $groups = Groups::where("id", 1)->get('id');
-        $admin = Admin::firstOrCreate(
+        $admin = Admin::create(
             array_merge(
                 $validator->validated(),
-                // ['group_id' => $groups],
                 ['password' => bcrypt($request->password)]
             )
         );
@@ -119,7 +116,7 @@ class AdminController extends Controller
 
     protected function guard()
     {
-        return Auth::guard();
+        return Auth::guard('admin');
 
     }
 }

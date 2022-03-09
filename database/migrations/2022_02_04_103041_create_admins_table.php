@@ -19,9 +19,8 @@ class CreateAdminsTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            // $table->unsignedBigInteger('group_id')->index();
-            // $table->foreign('group_id')->references('id')->on('groups');
-            $table->foreignId('group_id')->constrained('groups')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('group_id')->index();
+            $table->foreign('group_id')->references('id')->on('groups');
             $table->dateTime('email_verified_at')->nullable();
             $table->string('password');
             $table->binary('image')->nullable();
@@ -29,9 +28,9 @@ class CreateAdminsTable extends Migration
             $table->rememberToken();
 
             $table->integer('created_by')->nullable();
-            $table->dateTime('Createdate');
+            $table->dateTime('createdate')->nullable();
             $table->integer('updated_by')->nullable();
-            $table->dateTime('Modifieddate');
+            $table->dateTime('modifieddate')->nullable();
             $table->softDeletes();
         });
     }

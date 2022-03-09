@@ -31,9 +31,9 @@ class Admin extends Authenticatable implements JWTSubject
         'is_developer',
         'remember_token',
         'created_by',
-        'CrateDate',
+        'cratedate',
         'updated_by',
-        'Modifieddate',
+        'modifieddate',
 
     ];
 
