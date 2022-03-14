@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGenericStatusesTable extends Migration
+class CreateColorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateGenericStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('generic_statuses', function (Blueprint $table) {
-            $table->id('id');
+        Schema::create('colors', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
-            $table->string('short_name');
-            $table->integer('createby')->nullable();
-            $table->dateTime('createdate')->nullable();
+            $table->binary('color_img');
+            $table->text('remarks')->nullable();
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('generic_statuses');
+            $table->integer('createby');
+            $table->dateTime('createdate');
             $table->integer('modifiedby')->nullable();
             $table->dateTime('modifieddate')->nullable();
 
@@ -32,6 +35,6 @@ class CreateGenericStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('generic_statuses');
+        Schema::dropIfExists('colors');
     }
 }

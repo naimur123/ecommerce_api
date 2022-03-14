@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->string('product_slug');
             $table->string('product_code');
             $table->string('product_quantity');
-            $table->unsignedBigInteger('unit_id')->nullable();
+            $table->unsignedBigInteger('unit_id');
             $table->foreign('unit_id')->references('id')->on('units');
             $table->text('short_description')->nullable();
             $table->text('long_description')->nullable();
@@ -37,10 +37,10 @@ class CreateProductsTable extends Migration
             $table->binary('image_one')->nullable();
             $table->binary('image_two')->nullable();
             $table->binary('image_three')->nullable();
-            $table->integer('Createby');
-            $table->dateTime('Createdate');
-            $table->integer('Modifiedby')->nullable();
-            $table->dateTime('Modifieddate')->nullable();
+            $table->integer('createby');
+            $table->dateTime('createdate');
+            $table->integer('modifiedby')->nullable();
+            $table->dateTime('modifieddate')->nullable();
         });
     }
 

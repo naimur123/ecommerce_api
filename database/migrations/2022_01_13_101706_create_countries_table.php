@@ -20,10 +20,10 @@ class CreateCountriesTable extends Migration
             $table->text('remarks');
             $table->unsignedBigInteger('status_id');
             $table->foreign('status_id')->references('id')->on('generic_statuses');
-            $table->integer('Createby');
-            $table->dateTime('Createdate');
-            $table->integer('Modifiedby')->nullable();
-            $table->dateTime('Modifieddate')->nullable();
+            $table->integer('createby');
+            $table->dateTime('createdate');
+            $table->integer('modifiedby')->nullable();
+            $table->dateTime('modifieddate')->nullable();
         });
     }
 

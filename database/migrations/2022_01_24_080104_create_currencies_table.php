@@ -20,10 +20,10 @@ class CreateCurrenciesTable extends Migration
             $table->text('remarks')->nullable();
             $table->unsignedBigInteger('country_id');
             $table->foreign('country_id')->references('id')->on('countries');
-            $table->integer('Createby');
-            $table->dateTime('Createdate');
-            $table->integer('Modifiedby')->nullable();
-            $table->dateTime('Modifieddate')->nullable();
+            $table->integer('createby');
+            $table->dateTime('createdate');
+            $table->integer('modifiedby')->nullable();
+            $table->dateTime('modifieddate')->nullable();
         });
     }
 

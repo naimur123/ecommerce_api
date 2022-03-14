@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBrandsTable extends Migration
+class CreateUserAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('brand_name');
-            $table->binary('brand_image');
-            $table->text('remarks')->nullable();
-            $table->unsignedBigInteger('country_id');
+        Schema::create('user_areas', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->foreign('country_id')->references('id')->on('countries');
-            $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('generic_statuses');
+            $table->string('city');
+            $table->string('area_name');
             $table->integer('createby');
             $table->dateTime('createdate');
             $table->integer('modifiedby')->nullable();
             $table->dateTime('modifieddate')->nullable();
+
+
+
         });
     }
 
@@ -36,6 +36,6 @@ class CreateBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists('user_areas');
     }
 }

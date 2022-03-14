@@ -18,10 +18,10 @@ class CreateUnitsTable extends Migration
             $table->string('name');
             $table->string('short_name');
             $table->text('remarks')->nullable();
-            $table->integer('Createby');
-            $table->dateTime('Createdate');
-            $table->integer('Modifiedby')->nullable();
-            $table->dateTime('Modifieddate')->nullable();
+            $table->integer('createby');
+            $table->dateTime('createdate');
+            $table->integer('modifiedby')->nullable();
+            $table->dateTime('modifieddate')->nullable();
         });
     }
 
