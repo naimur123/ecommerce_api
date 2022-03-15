@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class fabric_type extends Model
+class Fabric_type extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'name','remarks','status_id','createby', 'createdate', 'modifiedby', 'modifieddate',
+
+    ];
+    public $timestamps = false;
 }

@@ -13,9 +13,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\CurrencyController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\Fabric_typeController;
+use App\Http\Controllers\Admin\Fabric_type_detailsController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Middleware\AdminGuard;
-
-
+use App\Models\Fabric_type;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +67,11 @@ Route::resource('/admin/currencies', CurrencyController::class);
 Route::resource('/admin/units', UnitController::class);
 Route::resource('/admin/products', ProductController::class);
 Route::resource('/admin/groups', AccessController::class);
+Route::resource('/admin/colors', ColorController::class);
+Route::resource('/admin/coupons', CouponController::class);
+Route::resource('/admin/fabric_types', Fabric_typeController::class);
+Route::resource('/admin/fabric_types_details', Fabric_type_detailsController::class);
+Route::resource('/admin/orders', OrderController::class);
 
 //UserPart
 Route::group(
