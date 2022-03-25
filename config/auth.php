@@ -48,6 +48,10 @@ return [
             'driver' => 'jwt',
             'provider' => 'admins',
         ],
+        'merchant'    => [
+            'driver' => 'jwt',
+            'provider' => 'merchants',
+        ],
         // 'admins' => [
         //     'driver' => 'jwt',
         //     'provider' => 'admins',
@@ -85,6 +89,10 @@ return [
         'admins'   => [
             'driver' => 'eloquent',
             'model'  => App\Models\Admin::class,
+        ],
+        'merchants'   => [
+            'driver' => 'eloquent',
+            'model'  => App\Models\Merchant::class,
         ],
 
         // 'users' => [

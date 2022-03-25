@@ -3,40 +3,37 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Groups;
+use App\Models\GroupAccess;
 use Illuminate\Http\Request;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
 class AccessController extends Controller
 {
     public function index(){
-        return Groups::all();
+        return GroupAccess::all();
 
     }
     public function store(Request $request){
         $request->validate([
-            'name' => 'required',
-            'is_admin' => 'required'
+            'group_id' => 'required',
 
         ]);
 
 
-        return Groups::create($request->all());
+        return GroupAccess::create($request->all());
     }
-    // public function update(Request $request, $id){
+    public function update(Request $request, $id){
 
-    //     //$country = Groups::where('id',$id)->update($request->all());
-
-    //     //$category = Country::find($id);
-    //     //$category->update($request->all());
-    //     //return $country;
+        $group_access = GroupAccess::where('id',$id)->update($request->all());
+        return $group_access;
 
 
-    // }
+    }
     public function destroy($id){
 
-        // $country = Groups::where('id',$id)->delete();
+        // $country = Group_Access::where('id',$id)->delete();
         // return $country;
-        return Groups::destroy($id);
+        return GroupAccess::destroy($id);
     }
+    
 }

@@ -18,6 +18,10 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\Fabric_typeController;
 use App\Http\Controllers\Admin\Fabric_type_detailsController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Middleware\AdminGuard;
 use App\Models\Fabric_type;
 
@@ -66,12 +70,32 @@ Route::resource('/admin/brands', BrandController::class);
 Route::resource('/admin/currencies', CurrencyController::class);
 Route::resource('/admin/units', UnitController::class);
 Route::resource('/admin/products', ProductController::class);
-Route::resource('/admin/groups', AccessController::class);
+Route::resource('/admin/groups', GroupController::class);
+Route::resource('/admin/groupAccess', AccessController::class);
 Route::resource('/admin/colors', ColorController::class);
 Route::resource('/admin/coupons', CouponController::class);
 Route::resource('/admin/fabric_types', Fabric_typeController::class);
 Route::resource('/admin/fabric_types_details', Fabric_type_detailsController::class);
 Route::resource('/admin/orders', OrderController::class);
+Route::resource('/admin/blogs', BlogController::class);
+Route::resource('/admin/events', EventController::class);
+Route::resource('/admin/news', NewsController::class);
+
+//Merchant
+Route::group(
+    [
+        'middleware' => 'merchant',
+        'namespace'  => 'App\Http\Controllers\Admin',
+        'prefix'     => 'auth',
+    ],
+    function () {
+        Route::post('/merchant/login', 'MerchantController@login');
+        Route::post('/merchant/register', 'MerchantController@register');
+        Route::post('/merchant/logout', 'MerchantController@logout');
+        Route::get('/merchant/profile', 'MerchantController@profile');
+        Route::post('/merchant/refresh', 'MerchantController@refresh');
+    }
+);
 
 //UserPart
 Route::group(
