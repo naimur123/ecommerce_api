@@ -19,18 +19,19 @@ class CreateBlogsTable extends Migration
             $table->string('slug');
             $table->text('description')->nullable();
             $table->string('read_time')->nullable();
-            $table->string('image')->nullable();
+            $table->boolean('image')->nullable();
             $table->string('meta_tag')->nullable();
             $table->string('meta_description')->nullable();
-            $table->boolean("publication_status")->default(false);
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('generic_statuses');
             $table->unsignedBigInteger('createdby')->nullable();
             $table->dateTime('createdate')->nullable();
             $table->unsignedBigInteger('updatedby')->nullable();
             $table->dateTime('modifieddate')->nullable();
-           
+
             $table->foreign("createdby")->references("id")->on("admins");
             $table->foreign("updatedby")->references("id")->on("admins");
-            
+
         });
     }
 

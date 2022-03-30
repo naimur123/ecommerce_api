@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('backend.masterPage');
 });
+Route::get('/admin/categories', 'Admin\CategoryController@index')->name('admin.categories');

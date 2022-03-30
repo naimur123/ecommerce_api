@@ -6,11 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categories;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
+
 
 class CategoryController extends Controller
 {
     public function index(){
         return Categories::all();
+        // $categories = Categories::all();
+        $categories = Http::get('http://127.0.0.1:8000/api/admin/categories');
+        return view('backend.categories.index',$categories);
 
     }
     public function store(Request $request){
